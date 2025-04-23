@@ -1,19 +1,25 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Home from './components/Home'
 import UserLogin from './components/UserLogin'
 import UserSignUp from './components/UserSignUp'
 import CaptainLogin from './components/CaptainLogin'
 import CaptainSignUp from './components/CaptainSignUp'
+import LandingPage from './components/LandingPage'
+import Home from './components/Home'
+import UserLogout from './components/UserLogout'
+import UserContext from './context/UserContext'
+import UserProtectedWrapper from './context/UserProtectedWrapper'
 
 const App = () => {
   return (
         <Routes>
-          <Route path="/" element={<Home/>}/>
+          <Route path="/" element={<LandingPage/>}/>
           <Route path="/user/login" element={<UserLogin/>}/>
           <Route path="/user/signup" element={<UserSignUp/>}/>
           <Route path="/captain/login" element={<CaptainLogin/>}/>
           <Route path="/captain/signup" element={<CaptainSignUp/>}/>
+          <Route path="/home" element={<UserProtectedWrapper><Home/></UserProtectedWrapper>}/>
+          <Route path="/user/logout" element={<UserProtectedWrapper><UserLogout/></UserProtectedWrapper>}/>
         </Routes>
   )
 }

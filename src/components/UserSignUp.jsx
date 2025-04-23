@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { UserDataContext } from '../context/UserContext'
 
 const UserSignUp = () => {
 
@@ -7,25 +10,33 @@ const UserSignUp = () => {
   const [password, setPassword] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
-  const [userData, setUserData] = useState({});
 
-  const submitEventHandler = (e) => {
+  const navigate = useNavigate();
+
+  const { user, setUser } = useContext(UserDataContext);
+
+  const submitEventHandler = async(e) => {
     e.preventDefault();
-    setUserData({
+    const newUser = {
       email: email,
       password: password,
-      firstname: firstname,
-      lastname: lastname
-    });
+      fullname:{
+        firstname: firstname,
+        lastname: lastname
+      }
+    };
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`, newUser);
+    const data = response?.data;
+    if(response.status === 200){
+      setUser(data.newUser);
+      navigate('/home');
+    }
+
     setEmail('');
     setPassword('');
     setFirstname('');
     setLastname('');
   }
-
-  useEffect(()=>{
-    console.log(userData);
-  },[userData])
 
   return (
     <div className='p-7 h-screen flex flex-col justify-between'>

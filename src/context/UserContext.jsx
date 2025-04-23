@@ -1,16 +1,26 @@
-import React, { useContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const UserContext = () => {
+export const UserDataContext = createContext();
 
-    const UserContext = useContext();
+const UserContext = ({ children }) => {
 
-    const [user, setUser] = useState({});
-    
+  const [user, setUser] = useState({
+    fullname: {
+      firstname: "",
+      lastname: "",
+    },
+    email: "",
+    password: "",
+  });
+
   return (
-    <UserContext.Provider value={{user}}>
-        {children}  
-    </UserContext.Provider>
-  )
-}
+    <div>
+      <UserDataContext.Provider value={{ user, setUser }}>
+        {children}
+      </UserDataContext.Provider>
+    </div>
+  );
+};
 
-export default UserContext
+export default UserContext;
