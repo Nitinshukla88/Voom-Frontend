@@ -5,14 +5,16 @@ export const UserDataContext = createContext();
 
 const UserContext = ({ children }) => {
 
-  const [user, setUser] = useState({
-    fullname: {
-      firstname: "",
-      lastname: "",
-    },
-    email: "",
-    password: "",
+  const [user, setUser] = useState(() =>{
+    const storedUser = localStorage.getItem("voom-user");
+    return storedUser ? JSON.parse(storedUser) : null
   });
+
+  useEffect(()=> {
+    if(user){
+      localStorage.setItem("voom-user", JSON.stringify(user));
+    }
+  },[user])
 
   return (
     <div>

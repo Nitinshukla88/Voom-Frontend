@@ -8,7 +8,7 @@ const UserProtectedWrapper = ({ children }) => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-      if(!user?.email){
+      if(!user){
         navigate("/user/login");
       }
     }, [user, navigate]);

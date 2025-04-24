@@ -13,7 +13,7 @@ const UserSignUp = () => {
 
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(UserDataContext);
+  const { setUser } = useContext(UserDataContext);
 
   const submitEventHandler = async(e) => {
     e.preventDefault();
@@ -29,6 +29,7 @@ const UserSignUp = () => {
     const data = response?.data;
     if(response.status === 200){
       setUser(data.newUser);
+      localStorage.setItem("voom-user", JSON.stringify(data.newUser));
       navigate('/home');
     }
 
