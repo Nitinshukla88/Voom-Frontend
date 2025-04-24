@@ -1,16 +1,23 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const CaptainDataContext = createContext();
 
 export const CaptainContext = ({ children }) => {
-    const [captain, setCaptain] = useState(null);
+    const [captain, setCaptain] = useState(()=> {
+        return localStorage.getItem("voom-captain") ? JSON.parse(localStorage.getItem("voom-captain")) : null
+    });
 
-    const updateCaptain = (newCaptain) => {
-        setCaptain(newCaptain);
-    };
+    useEffect(() => {
+        if(captain){
+            localStorage.setItem("voom-captain", JSON.stringify(captain));
+            console.log("Captain data saved to local storage")
+        }else{
+            localStorage.removeItem("voom-captain")
+        }
+    }, [captain])
 
     return (
-        <CaptainDataContext.Provider value={{ captain, updateCaptain }}>
+        <CaptainDataContext.Provider value={{ captain, setCaptain }}>
             {children}
         </CaptainDataContext.Provider>
     );
