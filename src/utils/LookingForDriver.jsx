@@ -1,21 +1,21 @@
 import React from 'react'
 
-const LookingForDriver = () => {
+const LookingForDriver = (props) => {
   return (
     <div>
-        <h5 className="p-3 text-center top-0 absolute w-[93%]" onClick={()=> props.setVehiclePanel(false)}><i className="ri-arrow-down-wide-line text-3xl text-gray-400"></i></h5>
+        <h5 className="p-3 text-center top-0 absolute w-[93%]" onClick={()=> props.setVehicleFound(false)}><i className="ri-arrow-down-wide-line text-3xl text-gray-400"></i></h5>
         <h3 className="text-2xl font-semibold mb-5">Looking for Driver</h3>
         <div className='flex flex-col gap-2 justify-between items-center'>
             <img src='https://www.asaproadworthys.com.au/wp-content/uploads/2021/11/Select.jpeg' className='h-20'/>
             <div className='w-full mt-5'>
-                <div className='flex items-center gap-5 p-2 border-b-1'>
+                <div className='flex items-center gap-5 p-2 border-b-1 border-gray-400'>
                     <i className="text-lg ri-map-pin-fill"></i>
                     <div>
                         <h3 className='text-lg font-medium'>562/11-A</h3>
                         <p className='text-sm -mt-1 text-gray-600'>Kankariya talab, Ahemdabad</p>
                     </div>
                 </div>
-                <div className='flex items-center gap-5 p-2 border-b-1'>
+                <div className='flex items-center gap-5 p-2 border-b-1 border-gray-400'>
                     <i className="ri-map-pin-user-fill"></i>
                     <div>
                         <h3 className='text-lg font-medium'>562/11-A</h3>
@@ -30,7 +30,6 @@ const LookingForDriver = () => {
                     </div>
                 </div>
             </div>
-            <button className='w-full bg-green-600 font-semibold text-white p-2 rounded-lg mt-5'>Confirm</button>
         </div>
         
     </div>

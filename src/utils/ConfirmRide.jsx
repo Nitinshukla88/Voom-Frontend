@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ConfirmRide = () => {
+const ConfirmRide = (props) => {
   return (
     <div>
-        <h5 className="p-3 text-center top-0 absolute w-[93%]" onClick={()=> props.setVehiclePanel(false)}><i className="ri-arrow-down-wide-line text-3xl text-gray-400"></i></h5>
+        <h5 className="p-3 text-center top-0 absolute w-[93%]" onClick={()=> props.setconfirmRidePanel(false)}><i className="ri-arrow-down-wide-line text-3xl text-gray-400"></i></h5>
         <h3 className="text-2xl font-semibold mb-5">Confirm your Ride</h3>
         <div className='flex flex-col gap-2 justify-between items-center'>
             <img src='https://www.asaproadworthys.com.au/wp-content/uploads/2021/11/Select.jpeg' className='h-20'/>
@@ -30,7 +30,10 @@ const ConfirmRide = () => {
                     </div>
                 </div>
             </div>
-            <button className='w-full bg-green-600 font-semibold text-white p-2 rounded-lg mt-5'>Confirm</button>
+            <button className='w-full bg-green-600 font-semibold text-white p-2 rounded-lg mt-5' onClick={()=> {
+                props.setVehicleFound(true)
+                props.setconfirmRidePanel(false)
+            }}>Confirm</button>
         </div>
         
     </div>
